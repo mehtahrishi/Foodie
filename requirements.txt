@@ -4,3 +4,4 @@ requests==2.31.0
 pyowm==3.3.0
 python-aiml==0.9.1
 gunicorn==20.1.0
+Werkzeug==2.3.8
