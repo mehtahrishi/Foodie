@@ -36,3 +36,7 @@ def chatbot():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+import time
+if not hasattr(time, 'clock'):
+    time.clock = time.perf_counter
