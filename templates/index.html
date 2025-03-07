@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodie Chatbot</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/free-vector/orange-fruit-memphis-style_53876-93585.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .chat-container {
+            width: 400px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            color: black;
+            overflow-y: auto;
+            max-height: 80vh;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        input {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: black;
+        }
+        input[type="text"] {
+            width: calc(100% - 60px);
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            outline: none;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background: orange;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #ff4500;
+        }
+        .message {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            gap: 10px;
+            text-align: left;
+        }
+        .message i {
+            font-size: 20px;
+        }
+        .message p {
+            margin: 0;
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            color: black;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+        .user {
+            justify-content: flex-end; 
+            text-align: right; 
+        }
+        .user p {
+            background: orange; 
+            color: black;
+        }
+        .bot {
+            justify-content: flex-start; 
+            text-align: left;
+        }
+        .bot p {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .chat-log {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <h1>🍔 Foodie Chatbot</h1>
+        <div class="chat-log">
+            {% if conversation %}
+            {% for msg in conversation %}
+            <div class="message {{ 'user' if msg.user else 'bot' }}">
+                <i class="{{ 'fas fa-user' if msg.user else 'fas fa-robot' }}"></i>
+                <p>{{ msg.text }}</p>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        
+        <form method="POST">
+            <div class="message user">
+                <i class="fas fa-user"></i>
+                <input type="text" name="message" placeholder="Type your message...">
+                <button type="submit">Send</button>
+            </div>
+        </form>
+
+        {% if ask_location %}
+        <form method="POST">
+            <div class="message">
+                <i class="fas fa-map-marker-alt"></i>
+                <input type="text" name="location" placeholder="Enter your location">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<aiml version="1.0" encoding="UTF-8">
+<category>
+    <pattern>LOAD AIML B</pattern>
+    <template>
+        <learn>basic_chat.aiml</learn>
+    </template>
+</category>
+<category>
+    <pattern>SET CASEINSENSITIVE</pattern>
+    <template>
+        <think><set name="caseInsensitive">yes</set></think>
+    </template>
+</category>
+</aiml>
